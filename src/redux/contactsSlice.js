@@ -26,14 +26,14 @@ const contactsSlice = createSlice({
         state.items = action.payload;
       })
       .addCase(fetchContacts.rejected, handleRejected)
-      // Додавання контакту
+      
       .addCase(addContact.pending, handlePending)
       .addCase(addContact.fulfilled, (state, action) => {
         state.loading = false;
         state.items.push(action.payload);
       })
       .addCase(addContact.rejected, handleRejected)
-      // Видалення контакту
+      
       .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.loading = false;
@@ -51,6 +51,7 @@ export const contactsReducer = contactsSlice.reducer;
 const selectContacts = (state) => state.contacts.items;
 const selectNameFilter = (state) => state.filters.name;
 
+
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
   (contacts, filter) => {
@@ -59,3 +60,6 @@ export const selectFilteredContacts = createSelector(
     );
   }
 );
+
+
+export default contactsSlice.reducer;
